@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request
+from flask import Blueprint, jsonify, request, render_template
 from models.entities.Station import Station
 from models.StationModel import StationModel
 
@@ -87,3 +87,15 @@ def delete_station(id):
 
     except Exception as ex:
         return jsonify({'message': str(ex)}), 500
+    
+
+# pruba
+
+@main.route('/message')
+def message(): 
+    return jsonify('New message from the Flask server.')
+
+@main.route('/home', defaults = {'path': ''})
+@main.route('/<path:path>')
+def render_vue(path):
+    return render_template('index.html')

@@ -5,7 +5,8 @@ from config import config
 from database.db import get_connection
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder='./client/dist/static', template_folder='./client/dist')
+cors = CORS(app, resources={r"/*":{"origins": "*"}})
 
 def pageNotFound(error):
     return '<h1>Page not found. 404.</h1>', 404
