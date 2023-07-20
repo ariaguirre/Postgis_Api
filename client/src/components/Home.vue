@@ -1,5 +1,6 @@
 <template>
     <div class="home">
+        <h1>Estaciones meteorológicas</h1>
       <table>
         <thead>
           <tr>
@@ -16,27 +17,33 @@
           </tr>
         </tbody>
       </table>
+      <button @click="redirectToCreate">Crear estación meteorológica</button>
     </div>
   </template>
-  
+
+
   <script>
   import axios from 'axios'
+  import router from '../router/index'
   export default {
     name: 'Main', 
     data() {
       return {
-        stations: []  // Array para almacenar las estaciones obtenidas del servidor
+        stations: []
       }
     },
     methods: {
       getStations() {
         const path = 'http://localhost:5000/'
         axios.get(path).then((response) => {
-          this.stations = response.data // Almacenar los datos en la variable stations
+          this.stations = response.data 
         })
         .catch((error) => {
           console.log(error);
         })
+      },
+      redirectToCreate(){
+        router.push('/create');
       }
     }, 
     created() {
@@ -44,11 +51,5 @@
     }
   }
   </script>
-  
-  <style>
-  .home {
-    text-align: center;
-    margin-top: 20px;
-  }
-  </style>
+<style src = './Home.css'/>
   

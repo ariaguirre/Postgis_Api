@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, request, render_template
+from flask import Blueprint, jsonify, request, render_template, render_template_string
 from models.entities.Station import Station
 from models.StationModel import StationModel
 
@@ -95,7 +95,12 @@ def delete_station(id):
 def message(): 
     return jsonify('New message from the Flask server.')
 
-@main.route('/home', defaults = {'path': ''})
+# @main.route('/home', defaults = {'path': ''})
+# @main.route('/<path:path>')
+# def render_vue(path):
+#     return render_template('index.html')
+
+@main.route('/', defaults={'path': ''})
 @main.route('/<path:path>')
 def render_vue(path):
     return render_template('index.html')
